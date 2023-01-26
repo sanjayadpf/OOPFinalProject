@@ -19,7 +19,7 @@ import java.util.EnumMap;
 public class Main {
     public static void main(String[] args){
         PaintCanvas paintCanvas = new PaintCanvas();
-        paintCanvas.addMouseListener(new ClickHandler());
+        paintCanvas.addMouseListener(new ClickHandler(paintCanvas));
         
         IGuiWindow guiWindow = new GuiWindow(paintCanvas);
         IUiModule uiModule = new Gui(guiWindow);

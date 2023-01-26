@@ -8,6 +8,7 @@ package controller;
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import view.gui.PaintCanvas;
 
 /**
  *
@@ -17,13 +18,22 @@ public class ClickHandler extends MouseAdapter{
     
     public Point startPoint;
     public Point endPoint;
+    public PaintCanvas paintCanvas;
+
+    
+    public ClickHandler(PaintCanvas paintCanvas) {
+        this.paintCanvas=paintCanvas;
+    }
+    
     @Override
+    
+    
     public void mousePressed(MouseEvent me) {
         startPoint = new Point();
         startPoint.x=me.getX();
         startPoint.y=me.getY();
-        System.out.println(""+startPoint.x);
         
+        paintCanvas.getGraphics().drawRect(120, 130, 200, 400);
         // compiled code
     }
 
@@ -33,8 +43,6 @@ public class ClickHandler extends MouseAdapter{
         endPoint = new Point();
         startPoint.x=me.getX();
         startPoint.y=me.getY();
-        System.out.println(""+startPoint.x);
-        
     }
 }
 
