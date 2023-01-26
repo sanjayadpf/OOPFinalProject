@@ -33,7 +33,7 @@ public class ClickHandler extends MouseAdapter{
         startPoint.x=me.getX();
         startPoint.y=me.getY();
         
-        paintCanvas.getGraphics().drawRect(120, 130, 200, 400);
+        
         // compiled code
     }
 
@@ -41,8 +41,15 @@ public class ClickHandler extends MouseAdapter{
     public void mouseReleased(MouseEvent me) {
         // compiled code
         endPoint = new Point();
-        startPoint.x=me.getX();
-        startPoint.y=me.getY();
+        endPoint.x=me.getX();
+        endPoint.y=me.getY();
+        
+        int strX = Math.min(startPoint.x, endPoint.x);
+	int strY = Math.min(startPoint.y, endPoint.y);
+	int width = Math.abs(startPoint.x - endPoint.x);
+	int height = Math.abs(startPoint.y - endPoint.y);
+        
+        paintCanvas.getGraphics().drawRect(strX, strY, width, height);
     }
 }
 
