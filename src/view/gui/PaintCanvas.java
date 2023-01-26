@@ -1,17 +1,24 @@
 package view.gui;
 
+import controller.ClickHandler;
 import javax.swing.JComponent;
 import java.awt.*;
 
 public class PaintCanvas extends JComponent {
 
+   
     @Override
     public void paint(Graphics g) {
         Graphics2D graphics2d = (Graphics2D)g;
 
         // For example purposes only; remove all lines below from your final project.
         // Draw all shapes here
-
+        ClickHandler ch=(ClickHandler) this.getMouseListeners()[0];
+        
+        if(ch.startPoint!=null){
+            System.out.println(""+ch.startPoint.x);
+        }
+        
         graphics2d.setColor(Color.GREEN);
         graphics2d.fillRect(12, 13, 200, 400);
 
@@ -25,5 +32,6 @@ public class PaintCanvas extends JComponent {
         graphics2d.setStroke(stroke);
         graphics2d.setColor(Color.BLACK);
         graphics2d.drawRect(7, 8, 210, 410);
+     
     }
 }

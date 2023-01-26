@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -14,12 +15,14 @@ import java.awt.event.MouseEvent;
  */
 public class ClickHandler extends MouseAdapter{
     
-    Point startPoint;
+    public Point startPoint;
+    public Point endPoint;
     @Override
     public void mousePressed(MouseEvent me) {
         startPoint = new Point();
         startPoint.x=me.getX();
         startPoint.y=me.getY();
+        System.out.println(""+startPoint.x);
         
         // compiled code
     }
@@ -27,13 +30,12 @@ public class ClickHandler extends MouseAdapter{
     @Override
     public void mouseReleased(MouseEvent me) {
         // compiled code
+        endPoint = new Point();
+        startPoint.x=me.getX();
+        startPoint.y=me.getY();
+        System.out.println(""+startPoint.x);
+        
     }
 }
 
 
-class Point{
-    public int x;
-    public int y;
-
-
-}
