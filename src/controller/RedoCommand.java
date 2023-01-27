@@ -11,12 +11,11 @@ import model.GenerateShape;
  *
  * @author sanja
  */
-public class RedoCommand implements ICommand{
+public class RedoCommand implements ICommand {
+
     @Override
-    public void run(){
-       CommandHistory.redo();
-       
-      
+    public void run() {
+        CommandHistory.redo();
 
         int stackSize = CommandHistory.redoStack.size();
 
@@ -38,6 +37,6 @@ public class RedoCommand implements ICommand{
             //  gstemp.getCanvas().paint(gstemp.getGraphics());
         }
         //for Test
-       System.out.println("Redo- from Redo command class"+stackSize);
+        System.out.println("Redo- from Redo command class" + stackSize);
     }
 }

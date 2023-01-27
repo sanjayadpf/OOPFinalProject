@@ -14,6 +14,8 @@ import model.GenerateShape;
  */
 public class UndoCommand implements ICommand {
 
+    int move = 200;
+
     @Override
     public void run() {
         CommandHistory.undo();
@@ -31,14 +33,15 @@ public class UndoCommand implements ICommand {
 
                 GenerateShape gs = (GenerateShape) iu;
 
-                gs.getCanvas().getGraphics2D().drawRect(gs.getStrX() + 200, gs.getStrY(), gs.getWidth(), gs.getHeight());
-                System.out.println("run");
+                gs.getCanvas().getGraphics2D().drawRect(gs.getStrX() + move, gs.getStrY(), gs.getWidth(), gs.getHeight());
+
                 //
             }
             //  gstemp.getCanvas().paint(gstemp.getGraphics());
         }
         //for test
         System.out.println("Undo- from UndoCommand Class" + stackSize);
+        move += 200;
 
     }
 }
