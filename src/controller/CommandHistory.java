@@ -3,8 +3,8 @@ package controller;
 import java.util.Stack;
 
 public class CommandHistory {
-	private static final Stack<IUndoable> undoStack = new Stack<IUndoable>();
-	private static final Stack<IUndoable> redoStack = new Stack<IUndoable>();
+	public static final Stack<IUndoable> undoStack = new Stack<IUndoable>(); //changed to public from private
+	public static final Stack<IUndoable> redoStack = new Stack<IUndoable>(); //changed to public from private
 
 	public static void add(IUndoable cmd) {
 		undoStack.push(cmd);

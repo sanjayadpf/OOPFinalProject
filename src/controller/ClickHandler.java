@@ -8,6 +8,7 @@ package controller;
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import model.GenerateShape;
 import view.gui.PaintCanvas;
 
 /**
@@ -49,7 +50,9 @@ public class ClickHandler extends MouseAdapter{
 	int width = Math.abs(startPoint.x - endPoint.x);
 	int height = Math.abs(startPoint.y - endPoint.y);
         
-        paintCanvas.getGraphics().drawRect(strX, strY, width, height);
+        new GenerateShape(strX,strY,width,height,paintCanvas).run();//for test
+        
+        //paintCanvas.getGraphics().drawRect(strX, strY, width, height);
     }
 }
 

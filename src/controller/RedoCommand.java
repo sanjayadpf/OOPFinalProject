@@ -5,6 +5,8 @@
  */
 package controller;
 
+import model.GenerateShape;
+
 /**
  *
  * @author sanja
@@ -12,6 +14,30 @@ package controller;
 public class RedoCommand implements ICommand{
     @Override
     public void run(){
-        CommandHistory.redo();
+       CommandHistory.redo();
+       
+      
+
+        int stackSize = CommandHistory.redoStack.size();
+
+        if (stackSize != 0) {
+            GenerateShape gstemp = (GenerateShape) CommandHistory.redoStack.peek();
+
+            //gstemp.getCanvas().repaint();
+            //
+            // gstemp.getCanvas().removeAll();
+            // CommandHistory.undoStack
+            for (IUndoable iu : CommandHistory.redoStack) {
+
+                GenerateShape gs = (GenerateShape) iu;
+
+                gs.getCanvas().getGraphics2D().drawRect(gs.getStrX() + 400, gs.getStrY(), gs.getWidth(), gs.getHeight());
+                System.out.println("run");
+                //
+            }
+            //  gstemp.getCanvas().paint(gstemp.getGraphics());
+        }
+        //for Test
+       System.out.println("Redo- from Redo command class"+stackSize);
     }
 }
