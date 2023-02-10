@@ -1,9 +1,9 @@
 package model.interfaces;
 
 import java.awt.Graphics2D;
-import model.shapeUtility.CreateShape;
+import model.shapeUtility.GenerateShape;
 
 public interface IDrawShape {
 	
-	public void draw(CreateShape shape, Graphics2D graphics2d);
+	public void draw(GenerateShape shape, Graphics2D graphics2d);
 }

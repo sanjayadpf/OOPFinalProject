@@ -9,7 +9,7 @@ import model.ShapeShadingType;
 public class RectangleStrategy implements IDrawShape {
 
     @Override
-    public void draw(CreateShape shape, Graphics2D graphics2d) {
+    public void draw(GenerateShape shape, Graphics2D graphics2d) {
 
         if (shape.shadingType == ShapeShadingType.OUTLINE) {
             graphics2d.setColor(Color.WHITE);
