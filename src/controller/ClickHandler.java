@@ -30,25 +30,19 @@ public class ClickHandler extends MouseAdapter{
     
     
     public void mousePressed(MouseEvent me) {
-        startPoint = new Point();
-        startPoint.x=me.getX();
-        startPoint.y=me.getY();
-        
-        
+        startPoint = new Point(me.getX(),me.getY());
         // compiled code
     }
 
     @Override
     public void mouseReleased(MouseEvent me) {
         // compiled code
-        endPoint = new Point();
-        endPoint.x=me.getX();
-        endPoint.y=me.getY();
+        endPoint =  new Point(me.getX(),me.getY());
         
-        int strX = Math.min(startPoint.x, endPoint.x);
-	int strY = Math.min(startPoint.y, endPoint.y);
-	int width = Math.abs(startPoint.x - endPoint.x);
-	int height = Math.abs(startPoint.y - endPoint.y);
+        int strX = Math.min(startPoint.getX(), endPoint.getX());
+	int strY = Math.min(startPoint.getY(), endPoint.getY());
+	int width = Math.abs(startPoint.getX() - endPoint.getX());
+	int height = Math.abs(startPoint.getY() - endPoint.getY());
         
         new GenerateShape(strX,strY,width,height,paintCanvas).run();//for test
         
