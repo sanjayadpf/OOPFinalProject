@@ -5,6 +5,8 @@
  */
 package controller;
 
+import controller.interfaces.IUndoable;
+import controller.interfaces.ICommand;
 import model.GenerateShape;
 
 /**

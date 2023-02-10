@@ -1,7 +1,7 @@
 package main;
 
 import controller.ClickHandler;
-import controller.IJPaintController;
+import controller.interfaces.IJPaintController;
 import controller.JPaintController;
 import model.ShapeColor;
 import model.ShapeType;

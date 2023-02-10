@@ -6,8 +6,8 @@
 package model;
 
 import controller.CommandHistory;
-import controller.ICommand;
-import controller.IUndoable;
+import controller.interfaces.ICommand;
+import controller.interfaces.IUndoable;
 import java.awt.Graphics;
 import view.gui.PaintCanvas;
 

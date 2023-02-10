@@ -3,15 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package controller.interfaces;
 
 /**
  *
  * @author sanja
  */
-public interface IUndoable {
-
-    void undo();
-
-    void redo();
+public interface ICommand {
+    void run();
 }
