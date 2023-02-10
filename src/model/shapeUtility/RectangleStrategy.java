@@ -1,5 +1,6 @@
 package model.shapeUtility;
 
+import model.interfaces.IDrawShape;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
