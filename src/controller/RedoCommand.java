@@ -7,7 +7,7 @@ package controller;
 
 import controller.interfaces.IUndoable;
 import controller.interfaces.ICommand;
-import model.GenerateShape;
+import model.shapeUtility.GenerateShape;
 
 /**
  *
@@ -19,26 +19,26 @@ public class RedoCommand implements ICommand {
     public void run() {
         CommandHistory.redo();
 
-        int stackSize = CommandHistory.redoStack.size();
+       // int stackSize = CommandHistory.redoStack.size();
 
-        if (stackSize != 0) {
-            GenerateShape gstemp = (GenerateShape) CommandHistory.redoStack.peek();
+      //  if (stackSize != 0) {
+     //       GenerateShape gstemp = (GenerateShape) CommandHistory.redoStack.peek();
 
             //gstemp.getCanvas().repaint();
             //
             // gstemp.getCanvas().removeAll();
             // CommandHistory.undoStack
-            for (IUndoable iu : CommandHistory.redoStack) {
+       //     for (IUndoable iu : CommandHistory.redoStack) {
 
-                GenerateShape gs = (GenerateShape) iu;
+       //         GenerateShape gs = (GenerateShape) iu;
 
-                gs.getCanvas().getGraphics2D().drawRect(gs.getStrX() + 400, gs.getStrY(), gs.getWidth(), gs.getHeight());
-                System.out.println("run");
+         //       gs.getCanvas().getGraphics2D().drawRect(gs.getStrX() + 400, gs.getStrY(), gs.getWidth(), gs.getHeight());
+        //        System.out.println("run");
                 //
-            }
-            //  gstemp.getCanvas().paint(gstemp.getGraphics());
-        }
+       //     }
+          //  gstemp.getCanvas().paint(gstemp.getGraphics());
+    //    }
         //for Test
-        System.out.println("Redo- from Redo command class" + stackSize);
+     //  System.out.println("Redo- from Redo command class" + stackSize);
     }
 }

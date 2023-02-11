@@ -8,46 +8,48 @@ package controller;
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import model.GenerateShape;
+import java.io.IOException;
+import model.persistence.ApplicationState;
+import model.shapeUtility.GenerateShape;
+import model.shapeUtility.ShapeDetails;
 import view.gui.PaintCanvas;
 
 /**
  *
  * @author sanja
  */
-public class ClickHandler extends MouseAdapter{
-    
-    public Point startPoint;
-    public Point endPoint;
-    public PaintCanvas paintCanvas;
+public class ClickHandler extends MouseAdapter {
 
-    
-    public ClickHandler(PaintCanvas paintCanvas) {
-        this.paintCanvas=paintCanvas;
-    }
-    
-    @Override
-    
-    
+    private Point startPoint;
+    private Point endPoint;
+    private int height;
+    private int width;
+    private int minX;
+    private int minY;
+    private static ApplicationState applicationState;
+
     public void mousePressed(MouseEvent me) {
-        startPoint = new Point(me.getX(),me.getY());
-        // compiled code
+
+        startPoint = new Point(me.getX(), me.getY());
+
     }
 
-    @Override
     public void mouseReleased(MouseEvent me) {
-        // compiled code
-        endPoint =  new Point(me.getX(),me.getY());
-        
-        int strX = Math.min(startPoint.getX(), endPoint.getX());
-	int strY = Math.min(startPoint.getY(), endPoint.getY());
-	int width = Math.abs(startPoint.getX() - endPoint.getX());
-	int height = Math.abs(startPoint.getY() - endPoint.getY());
-        
-        new GenerateShape(strX,strY,width,height,paintCanvas).run();//for test
-        
-        //paintCanvas.getGraphics().drawRect(strX, strY, width, height);
+
+        endPoint = new Point(me.getX(), me.getY());
+
+        minX = Math.min(startPoint.getX(), endPoint.getY());
+        minY = Math.min(startPoint.getY(), endPoint.getY());
+        width = Math.abs(startPoint.getX() - endPoint.getX());
+        height = Math.abs(startPoint.getY() - endPoint.getY());
+
+        ShapeDetails shapeDetails = applicationState.getShapeDetails();
+
+        new GenerateShape(minX, minY, startPoint, endPoint, height, width, shapeDetails).run(); // only in Draw mode
+
+    }
+
+    public static void stateGrabber(ApplicationState state) {
+        applicationState = state;
     }
 }
-
-

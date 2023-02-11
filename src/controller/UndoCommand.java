@@ -8,7 +8,7 @@ package controller;
 import controller.interfaces.IUndoable;
 import controller.interfaces.ICommand;
 import javax.swing.JComponent;
-import model.GenerateShape;
+import model.shapeUtility.GenerateShape;
 
 /**
  *
@@ -22,7 +22,7 @@ public class UndoCommand implements ICommand {
     public void run() {
         CommandHistory.undo();
 
-        int stackSize = CommandHistory.undoStack.size();
+     /*   int stackSize = CommandHistory.undoStack.size();
 
         if (stackSize != 0) {
             GenerateShape gstemp = (GenerateShape) CommandHistory.undoStack.peek();
@@ -43,7 +43,7 @@ public class UndoCommand implements ICommand {
         }
         //for test
         System.out.println("Undo- from UndoCommand Class" + stackSize);
-        move += 200;
+        move += 200;*/
 
     }
 }
