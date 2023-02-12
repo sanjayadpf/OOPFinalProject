@@ -9,6 +9,7 @@ package model.shapeUtility;
  *
  * @author sanja
  */
+import model.interfaces.IShapeObserver;
 import model.interfaces.IDrawShape;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -43,9 +44,9 @@ public class DrawObserver implements IShapeObserver {
     @Override
     public void update() {
         graphics2d.setColor(Color.WHITE);
-        graphics2d.fillRect(0, 0, 1200, 800);
+        graphics2d.fillRect(0, 0, 1250, 800); //get height and width
 
-        for (GenerateShape shape : ((ManageObservers) ListModel.getMaster()).getList()) {
+        for (GenerateShape shape : ((ManageObservers) ListModel.subjectList).getList()) {
             drawShapeStrategy(shape, drawShape);
         }
     }

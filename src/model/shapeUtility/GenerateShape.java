@@ -6,55 +6,51 @@ import controller.CommandHistory;
 import controller.interfaces.ICommand;
 import controller.interfaces.IUndoable;
 import controller.Point;
-import model.shapeUtility.ShapeConfiguration;
 import model.ShapeShadingType;
 import model.ShapeType;
 
-
 public class GenerateShape implements ICommand, IUndoable {
-	
-	public GenerateShape shape;
-	public Color primaryColor;
-	public Color secondaryColor;
-	public ShapeType shapeType;	
-	public ShapeShadingType shadingType;
-	public ShapeConfiguration shapeConfig;
-	public Point startPoint;
-	public Point endPoint;
-	public int height;
-	public int width;	
-	int x;
-	int y;		
-	
-	public GenerateShape(int x, int y, Point startingPair, Point endingPair,
-						int height, int width, ShapeConfiguration shapeConfig){
-		this.x = x;
-		this.y = y;
-		this.startPoint = startingPair;
-		this.endPoint = endingPair;
-		this.height = height;
-		this.width = width;
-		this.shapeConfig = shapeConfig;		
-		this.shapeType = shapeConfig.shapeType;
-		this.primaryColor = shapeConfig.primaryColor.getColor();
-		this.secondaryColor = shapeConfig.secondaryColor.getColor();
-		this.shadingType = shapeConfig.shadingType;		}
 
-	@Override
-	public void run()  {
-		shape = new GenerateShape(x, y, startPoint, endPoint, height, width, shapeConfig);		
-		ListModel.getMaster().addShape(shape);		
-		CommandHistory.add(this);		
-		}		
+    public GenerateShape shape;
+    public int x;
+    public int y;
+    public Point startPoint;
+    public Point endPoint;
+    public int height;
+    public int width;
+    public ShapeType shapeType;
+    public Color primaryColor;
+    public Color secondaryColor;
+    public ShapeShadingType shadingType;
 
-	@Override
-	public void undo() {		
-		ListModel.getMaster().removeShape(shape);	
-	}
+    public GenerateShape(int x, int y, Point startPoint, Point endPoint,
+            int height, int width,ShapeType shapeType,Color primaryColor,Color secondaryColor,ShapeShadingType shadingType) {
+        this.x = x;
+        this.y = y;
+        this.startPoint = startPoint;
+        this.endPoint = endPoint;
+        this.height = height;
+        this.width = width;
+        this.shapeType = shapeType;
+        this.primaryColor = primaryColor;
+        this.secondaryColor = secondaryColor;
+        this.shadingType = shadingType;
+    }
 
-	@Override
-	public void redo() {
-		ListModel.getMaster().addShape(shape);			
-	}
+    @Override
+    public void run() {
+        shape = new GenerateShape(x, y, startPoint, endPoint, height, width,shapeType,primaryColor ,secondaryColor,shadingType);
+        ListModel.subjectList.addShape(shape);
+        CommandHistory.add(this);
+    }
+
+    @Override
+    public void undo() {
+        ListModel.subjectList.removeShape(shape);
+    }
+
+    @Override
+    public void redo() {
+        ListModel.subjectList.addShape(shape);
+    }
 }
-

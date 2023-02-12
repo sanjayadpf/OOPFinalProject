@@ -6,12 +6,13 @@ import model.ShapeType;
 import model.MouseMode;
 import model.interfaces.IApplicationState;
 import model.interfaces.IDialogProvider;
+import model.shapeUtility.ColorInfo;
 import view.interfaces.IDialogChoice;
 
 public class DialogProvider implements IDialogProvider {
     private final IDialogChoice<ShapeType> chooseShapeDialog;
-    private final IDialogChoice<ShapeColor> choosePrimaryColorDialog;
-    private final IDialogChoice<ShapeColor> chooseSecondaryColorDialog;
+    private final IDialogChoice<ColorInfo> choosePrimaryColorDialog;
+    private final IDialogChoice<ColorInfo> chooseSecondaryColorDialog;
     private final IDialogChoice<ShapeShadingType> chooseShadingTypeDialog;
     private final IDialogChoice<MouseMode> chooseStartAndEndPointModeDialog;
     private final IApplicationState applicationState;
@@ -31,12 +32,12 @@ public class DialogProvider implements IDialogProvider {
     }
 
     @Override
-    public IDialogChoice<ShapeColor> getChoosePrimaryColorDialog() {
+    public IDialogChoice<ColorInfo> getChoosePrimaryColorDialog() {
         return choosePrimaryColorDialog;
     }
 
     @Override
-    public IDialogChoice<ShapeColor> getChooseSecondaryColorDialog() {
+    public IDialogChoice<ColorInfo> getChooseSecondaryColorDialog() {
         return chooseSecondaryColorDialog;
     }
 

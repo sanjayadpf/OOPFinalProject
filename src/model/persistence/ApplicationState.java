@@ -1,5 +1,6 @@
 package model.persistence;
 
+import java.awt.Color;
 import model.ShapeColor;
 import model.ShapeShadingType;
 import model.ShapeType;
@@ -7,6 +8,7 @@ import model.MouseMode;
 import model.dialogs.DialogProvider;
 import model.interfaces.IApplicationState;
 import model.interfaces.IDialogProvider;
+import model.shapeUtility.ColorInfo;
 import view.interfaces.IUiModule;
 
 public class ApplicationState implements IApplicationState {
@@ -14,8 +16,8 @@ public class ApplicationState implements IApplicationState {
     private final IDialogProvider dialogProvider;
 
     private ShapeType activeShapeType;
-    private ShapeColor activePrimaryColor;
-    private ShapeColor activeSecondaryColor;
+    private ColorInfo activePrimaryColor; //ShapeColor original
+    private ColorInfo activeSecondaryColor; //ShapeColor original
     private ShapeShadingType activeShapeShadingType;
     private MouseMode activeMouseMode;
 
@@ -56,12 +58,12 @@ public class ApplicationState implements IApplicationState {
     }
 
     @Override
-    public ShapeColor getActivePrimaryColor() {
+    public ColorInfo getActivePrimaryColor() {
         return activePrimaryColor;
     }
 
     @Override
-    public ShapeColor getActiveSecondaryColor() {
+    public ColorInfo getActiveSecondaryColor() {
         return activeSecondaryColor;
     }
 
@@ -77,8 +79,8 @@ public class ApplicationState implements IApplicationState {
 
     private void setDefaults() {
         activeShapeType = ShapeType.RECTANGLE;
-        activePrimaryColor = ShapeColor.BLUE;
-        activeSecondaryColor = ShapeColor.GREEN;
+        activePrimaryColor = new ColorInfo(Color.BLUE, ShapeColor.BLUE); //activePrimaryColor = ShapeColor.BLUE;
+        activeSecondaryColor = new ColorInfo(Color.BLACK, ShapeColor.BLACK); //activeSecondaryColor = ShapeColor.GREEN;
         activeShapeShadingType = ShapeShadingType.FILLED_IN;
         activeMouseMode = MouseMode.DRAW;
     }

@@ -9,7 +9,9 @@ package model.shapeUtility;
  *
  * @author sanja
  */
-
+import model.interfaces.IShapeList;
+import model.interfaces.IShapeObserver;
+import model.interfaces.IShapeSubject;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,18 +26,6 @@ public class ManageObservers implements IShapeSubject, IShapeList {
     }
 
     @Override
-    public void addShape(GenerateShape shape) {
-        shapeList.add(shape);
-        notifyObservers();
-    }
-
-    @Override
-    public void removeShape(GenerateShape shape) {
-        shapeList.remove(shape);
-        notifyObservers();
-    }
-
-    @Override
     public void registerObserver(IShapeObserver observer) {
         observerList.add(observer);
     }
@@ -45,6 +35,18 @@ public class ManageObservers implements IShapeSubject, IShapeList {
         for (IShapeObserver observer : observerList) {
             observer.update();
         }
+    }
+
+    @Override
+    public void addShape(GenerateShape shape) {
+        shapeList.add(shape);
+        notifyObservers();
+    }
+
+    @Override
+    public void removeShape(GenerateShape shape) {
+        shapeList.remove(shape);
+        notifyObservers();
     }
 
     @Override

@@ -4,7 +4,7 @@ import model.ShapeColor;
 import model.ShapeShadingType;
 import model.ShapeType;
 import model.MouseMode;
-import model.shapeUtility.ShapeDetails;
+import model.shapeUtility.ColorInfo;
 
 public interface IApplicationState {
     void setActiveShape();
@@ -19,13 +19,12 @@ public interface IApplicationState {
 
     ShapeType getActiveShapeType();
 
-    ShapeColor getActivePrimaryColor();
+    ColorInfo getActivePrimaryColor();//ShapeColor getActivePrimaryColor();
 
-    ShapeColor getActiveSecondaryColor();
+    ColorInfo getActiveSecondaryColor();//ShapeColor getActiveSecondaryColor();
 
     ShapeShadingType getActiveShapeShadingType();
 
     MouseMode getActiveMouseMode();
     
-    ShapeDetails getShapeDetails(); //newly added
 }

@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package model.shapeUtility;
 
 import model.interfaces.IDrawShape;
@@ -6,6 +11,10 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import model.ShapeShadingType;
 
+/**
+ *
+ * @author sanja
+ */
 public class TriangleStrategy implements IDrawShape {
 
     @Override
@@ -27,18 +36,21 @@ public class TriangleStrategy implements IDrawShape {
             graphics2d.setStroke(new BasicStroke(5));
             graphics2d.setColor(shape.primaryColor);
             graphics2d.drawPolygon(x_coordinate, y_coordinate, 3);
+            System.out.println("Draw-Traingle-Outline");
         } else if (shape.shadingType == ShapeShadingType.FILLED_IN) {
             graphics2d.setColor(shape.primaryColor);
             graphics2d.fillPolygon(x_coordinate, y_coordinate, 3);
             graphics2d.setStroke(new BasicStroke(5));
             graphics2d.setColor(shape.primaryColor);
             graphics2d.fillPolygon(x_coordinate, y_coordinate, 3);
+            System.out.println("Draw-Traingle-Filledin");
         } else if (shape.shadingType == ShapeShadingType.OUTLINE_AND_FILLED_IN) {
             graphics2d.setColor(shape.primaryColor);
             graphics2d.fillPolygon(x_coordinate, y_coordinate, 3);
             graphics2d.setStroke(new BasicStroke(5));
             graphics2d.setColor(shape.secondaryColor);
             graphics2d.drawPolygon(x_coordinate, y_coordinate, 3);
+            System.out.println("Draw-Traingle-Outline_Filledin");
 
         }
 
