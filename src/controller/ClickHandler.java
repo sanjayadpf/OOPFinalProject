@@ -5,14 +5,10 @@
  */
 package controller;
 
-import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
 import model.persistence.ApplicationState;
 import model.shapeUtility.GenerateShape;
-import model.shapeUtility.ShapeDetails;
-import view.gui.PaintCanvas;
 
 /**
  *
@@ -42,14 +38,12 @@ public class ClickHandler extends MouseAdapter {
         minY = Math.min(startPoint.getY(), endPoint.getY());
         width = Math.abs(startPoint.getX() - endPoint.getX());
         height = Math.abs(startPoint.getY() - endPoint.getY());
-
-        ShapeDetails shapeDetails = applicationState.getShapeDetails();
-
-        new GenerateShape(minX, minY, startPoint, endPoint, height, width, shapeDetails).run(); // only in Draw mode
+        //lets draw
+        new GenerateShape(minX, minY, startPoint, endPoint, height, width, applicationState.getActiveShapeType(), applicationState.getActivePrimaryColor().getColor(), applicationState.getActiveSecondaryColor().getColor(), applicationState.getActiveShapeShadingType()).run(); // only in Draw mode
 
     }
 
-    public static void stateGrabber(ApplicationState state) {
+    public static void getAppState(ApplicationState state) {
         applicationState = state;
     }
 }

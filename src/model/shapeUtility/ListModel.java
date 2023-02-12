@@ -5,18 +5,14 @@
  */
 package model.shapeUtility;
 
+import model.interfaces.IShapeSubject;
+
 /**
  *
  * @author sanja
  */
-public interface IShapeSubject {
+public class ListModel {
 
-    void registerObserver(IShapeObserver observer);
-
-    void notifyObservers();//not required but kept it as in the theory
-
-    void addShape(GenerateShape shape);
-
-    void removeShape(GenerateShape shape);
-
+    public static IShapeSubject subjectList;
+ 
 }
