@@ -6,16 +6,38 @@
 package controller;
 
 import controller.interfaces.ICommand;
+import model.shapeUtility.GenerateShape;
+import model.shapeUtility.ListModel;
 
 /**
  *
  * @author sanja
  */
-public class CopyCommand implements ICommand{
+public class CopyCommand implements ICommand {
 
     @Override
     public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        ListModel.getClipBoard().grabList().clear();
+
+        for (GenerateShape shape : ListModel.getSelected().getList()) {
+
+            int newStartX = shape.startPoint.getX() + 100;
+            int newStartY = shape.endPoint.getY() + 100;
+            Point newStartPoint = new Point(newStartX, newStartY);
+
+            int newEndX = shape.endPoint.getX() + 100;
+            int newEndY = shape.endPoint.getY() + 100;
+            Point newEndPair = new Point(newEndX, newEndY);
+
+            int newHeight = shape.height;
+            int newWidth = shape.width;
+
+            int newX = Math.min(newStartX, newEndX);
+            int newY = Math.min(newStartY, newEndY);
+
+           
+        }
     }
-    
+
 }
