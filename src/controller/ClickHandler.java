@@ -7,6 +7,9 @@ package controller;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.persistence.ApplicationState;
 import model.shapeUtility.GenerateShape;
 
@@ -38,8 +41,13 @@ public class ClickHandler extends MouseAdapter {
         minY = Math.min(startPoint.getY(), endPoint.getY());
         width = Math.abs(startPoint.getX() - endPoint.getX());
         height = Math.abs(startPoint.getY() - endPoint.getY());
-        //lets draw
-        new GenerateShape(minX, minY, startPoint, endPoint, height, width, applicationState.getActiveShapeType(), applicationState.getActivePrimaryColor().getColor(), applicationState.getActiveSecondaryColor().getColor(), applicationState.getActiveShapeShadingType()).run(); // only in Draw mode
+        try {
+            //lets draw
+            //new GenerateShape(minX, minY, startPoint, endPoint, height, width, applicationState.getActiveShapeType(), applicationState.getActivePrimaryColor().getColor(), applicationState.getActiveSecondaryColor().getColor(), applicationState.getActiveShapeShadingType()).run(); // only in Draw mode
+            AppMode.executeCommand(minX, minY, startPoint, endPoint, height, width, applicationState.getActiveShapeType(),applicationState.getActivePrimaryColor().getColor(),applicationState.getActiveSecondaryColor().getColor(),applicationState.getActiveShapeShadingType());
+        } catch (IOException ex) {
+            Logger.getLogger(ClickHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
