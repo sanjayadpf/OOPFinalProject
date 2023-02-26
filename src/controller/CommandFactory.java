@@ -26,7 +26,7 @@ public class CommandFactory {
         return new SelectCommand(startPoint, endPoint);
     }
 
-   /* public static ICommand move(CustomPair startingPair) {
-        return new MoveShape(startingPair);
-    }*/
+   public static ICommand move(Point startPoint) {
+        return new MoveCommand(startPoint);
+    }
 }
