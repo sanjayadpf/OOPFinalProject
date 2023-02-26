@@ -38,7 +38,7 @@ public class AppMode {
         }else if(mode == SELECT){
             command = CommandFactory.select(startPoint, endPoint);
         }else if(mode==MOVE){
-           // command = CommandFactory.move(startPoint);
+            command = CommandFactory.move(startPoint);
         }
         command.run();
     }
