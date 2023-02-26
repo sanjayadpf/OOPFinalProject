@@ -18,23 +18,20 @@ public class CopyCommand implements ICommand {
     @Override
     public void run() {
 
-        ListModel.getClipBoard().grabList().clear();
+        ListModel.getClipBoard().getList().clear();
 
-        for (GenerateShape shape : ListModel.getSelected().getList()) {
+        for (GenerateShape shape : ListModel.getSelectedList().getList()) {
 
-            int newStartX = shape.startPoint.getX() + 100;
-            int newStartY = shape.endPoint.getY() + 100;
-            Point newStartPoint = new Point(newStartX, newStartY);
+            
+            Point newStartPoint = new Point(shape.startPoint.getX() + 100,shape.endPoint.getY() + 100);
 
-            int newEndX = shape.endPoint.getX() + 100;
-            int newEndY = shape.endPoint.getY() + 100;
-            Point newEndPair = new Point(newEndX, newEndY);
+            Point newEndPair = new Point(shape.endPoint.getX() + 100, shape.endPoint.getY() + 100);
 
             int newHeight = shape.height;
             int newWidth = shape.width;
 
-            int newX = Math.min(newStartX, newEndX);
-            int newY = Math.min(newStartY, newEndY);
+            int newX = Math.min(shape.startPoint.getX() + 100, shape.endPoint.getX() + 100);
+            int newY = Math.min(shape.endPoint.getY() + 100, shape.endPoint.getY() + 100);
 
            
         }
