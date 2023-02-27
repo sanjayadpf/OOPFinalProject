@@ -15,16 +15,11 @@ import model.interfaces.IShapeSubject;
 public class ListModel {
 
     public static IShapeSubject subjectList;
-    private static IShapeList selectedList;
-    private static IShapeList clipBoard;
+    public static IShapeList selectedList;
+    public static IShapeList clipBoard;
     
     static ListModel model;
 
-	public ListModel(IShapeSubject subjectList, IShapeList selectedList, IShapeList clipBoard) {
-		ListModel.subjectList = subjectList;
-		ListModel.selectedList = selectedList;
-		ListModel.clipBoard = clipBoard;
-	}
 
     public static IShapeSubject getSubjectList() {
         return subjectList;
