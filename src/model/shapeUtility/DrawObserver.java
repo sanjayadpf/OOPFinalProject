@@ -26,28 +26,13 @@ public class DrawObserver implements IShapeObserver {
         graphics2d = canvas.getGraphics2D();
     }
 
-    public static void drawShapeStrategy(GenerateShape shape, DrawObserver drawShape) {
-        IDrawShape shapeStrategy=null;
-        
-        if(shape.shapeType==ShapeType.RECTANGLE){
-            shapeStrategy = new RectangleStrategy();
-        }else if(shape.shapeType==ShapeType.ELLIPSE){
-            shapeStrategy = new EllipseStrategy();
-        }else if(shape.shapeType==ShapeType.TRIANGLE){
-            shapeStrategy = new TriangleStrategy();
-        }
-       
-        shapeStrategy.draw(shape, graphics2d);
-
-    }
-
     @Override
     public void update() {
         graphics2d.setColor(Color.WHITE);
         graphics2d.fillRect(0, 0, 1250, 800); //get height and width
         System.out.println("1observer running");
-        for (GenerateShape shape : ((ManageObservers) ListModel.subjectList).getList()) {
-            drawShapeStrategy(shape, drawShape);
+        for (GenerateShape shape : ((ManageObservers) ListModel.getSubjectList()).getList()) {
+            StrategySelection.drawShapeStrategy(shape, drawShape);
             System.out.println("2observer running");
         }
     }
