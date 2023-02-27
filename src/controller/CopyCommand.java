@@ -18,12 +18,11 @@ public class CopyCommand implements ICommand {
     @Override
     public void run() {
 
-        ListModel.getClipBoard().getList().clear();
+        ListModel.getClipBoardList().getList().clear();
 
         for (GenerateShape shape : ListModel.getSelectedList().getList()) {
-
+            //shifted down 100 & 100
             Point newStartPoint = new Point(shape.startPoint.getX() + 100,shape.endPoint.getY() + 100);
-
             Point newEndPoint = new Point(shape.endPoint.getX() + 100, shape.endPoint.getY() + 100);
 
             int newHeight = shape.height;
@@ -34,7 +33,7 @@ public class CopyCommand implements ICommand {
            
             GenerateShape copy = new GenerateShape(newX, newY, newStartPoint, newEndPoint,newHeight, newWidth,shape.shapeType,shape.primaryColor,shape.secondaryColor,shape.shadingType);
 			
-            ListModel.getClipBoard().addShape(copy);
+            ListModel.getClipBoardList().addShape(copy);
             
         }
     }

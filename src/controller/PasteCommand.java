@@ -6,16 +6,48 @@
 package controller;
 
 import controller.interfaces.ICommand;
+import controller.interfaces.IUndoable;
+import java.util.ArrayList;
+import java.util.List;
+import model.shapeUtility.GenerateShape;
+import model.shapeUtility.ListModel;
+import model.shapeUtility.ManageObservers;
 
 /**
  *
  * @author sanja
  */
-public class PasteCommand implements ICommand{
+public class PasteCommand implements ICommand, IUndoable {
+
+    public static List<GenerateShape> clipBoardList;
+    public static ManageObservers subjectList;
+    public static GenerateShape pasteShape;
+
+    private static ArrayList<GenerateShape> pastedShapeList = new ArrayList<GenerateShape>();
 
     @Override
     public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (GenerateShape shape : ListModel.getClipBoardList().getList()) {
+            pasteShape = shape;
+            pastedShapeList.add(shape);
+            ListModel.getSubjectList().addShape(pasteShape);
+            CommandHistory.add(this);
+        }
+        ListModel.getClipBoardList().getList().clear();
     }
-    
+
+    @Override
+    public void undo() {
+        for (GenerateShape shapeToPaste : pastedShapeList) {
+            ListModel.getSubjectList().removeShape(shapeToPaste);
+        }
+    }
+
+    @Override
+    public void redo() {
+        for (GenerateShape shapeToPaste : pastedShapeList) {
+            ListModel.getSubjectList().addShape(shapeToPaste);
+        }
+    }
+
 }

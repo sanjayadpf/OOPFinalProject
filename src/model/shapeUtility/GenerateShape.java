@@ -40,17 +40,17 @@ public class GenerateShape implements ICommand, IUndoable {
     @Override
     public void run() {
         shape = new GenerateShape(x, y, startPoint, endPoint, height, width, shapeType, primaryColor, secondaryColor, shadingType);
-        ListModel.subjectList.addShape(shape);
+        ListModel.getSubjectList().addShape(shape);
         CommandHistory.add(this);
     }
 
     @Override
     public void undo() {
-        ListModel.subjectList.removeShape(shape);
+        ListModel.getSubjectList().removeShape(shape);
     }
 
     @Override
     public void redo() {
-        ListModel.subjectList.addShape(shape);
+        ListModel.getSubjectList().addShape(shape);
     }
 }
