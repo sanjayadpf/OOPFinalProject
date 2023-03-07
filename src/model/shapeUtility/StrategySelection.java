@@ -23,6 +23,10 @@ public class StrategySelection {
             shapeStrategy = new EllipseStrategy();
         }else if(shape.shapeType==ShapeType.TRIANGLE){
             shapeStrategy = new TriangleStrategy();
+        }else if (shape.shapeType==ShapeType.CIRCLE){
+            shapeStrategy=new CircleStrategy();
+        }else if (shape.shapeType==ShapeType.LINE){
+            shapeStrategy=new LineStrategy();
         }
         
         if(shapeStrategy==null){ //Null object checker
