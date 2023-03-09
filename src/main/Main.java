@@ -64,6 +64,11 @@ public class Main {
 
         final java.util.List<GenerateShape> clipBoardShapes = new ArrayList<GenerateShape>();
         IShapeList clipBoardList = new SelectedList(clipBoardShapes);
-        ListModel.clipBoardList=clipBoardList; //setting clipBoardList 
+        ListModel.clipBoardList=clipBoardList; //setting clipBoardList
+        
+        //for grouping
+        final java.util.List<GenerateShape> groupedShapes = new ArrayList<GenerateShape>();
+        IShapeList groupedList = new SelectedList(groupedShapes);
+        ListModel.groupList=groupedList; //setting selected lists
     }
 }
