@@ -5,5 +5,8 @@ public enum ShapeType {
     RECTANGLE,
     TRIANGLE,
     CIRCLE,
-    LINE
+    LINE,
+    ARC,
+    RECTANGLE3D,
+    ROUNDRECTANGLE
 }
