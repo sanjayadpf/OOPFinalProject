@@ -22,6 +22,11 @@ public class GenerateShape implements ICommand, IUndoable {
     public Color primaryColor;
     public Color secondaryColor;
     public ShapeShadingType shadingType;
+    
+    //for arc included flag
+    public int startAngle;
+    public int endAngle;
+    public boolean isArc=false;
 
     public GenerateShape(int x, int y, Point startPoint, Point endPoint,
             int height, int width, ShapeType shapeType, Color primaryColor, Color secondaryColor, ShapeShadingType shadingType) {
@@ -36,6 +41,9 @@ public class GenerateShape implements ICommand, IUndoable {
         this.secondaryColor = secondaryColor;
         this.shadingType = shadingType;
     }
+    
+    //overide for Arc
+
 
     @Override
     public void run() {
@@ -53,4 +61,11 @@ public class GenerateShape implements ICommand, IUndoable {
     public void redo() {
         ListModel.getSubjectList().addShape(shape);
     }
+    
+    //arc check
+
+    public boolean getIsArc() {
+        return isArc;
+    }
+    
 }

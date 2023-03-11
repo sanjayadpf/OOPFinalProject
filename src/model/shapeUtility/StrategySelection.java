@@ -27,7 +27,10 @@ public class StrategySelection {
             shapeStrategy=new CircleStrategy();
         }else if (shape.shapeType==ShapeType.LINE){
             shapeStrategy=new LineStrategy();
+        }else if (shape.shapeType==ShapeType.ARC){
+            shapeStrategy=new ArcStrategy();
         }
+        
         
         if(shapeStrategy==null){ //Null object checker
             shapeStrategy=new NullStrategy();
