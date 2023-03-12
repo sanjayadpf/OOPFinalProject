@@ -10,7 +10,7 @@ import controller.interfaces.IUndoable;
 import java.util.ArrayList;
 import java.util.List;
 import model.shapeUtility.GenerateShape;
-import model.shapeUtility.ListModel;
+import model.shapeUtility.JPaintManager;
 
 /**
  *
@@ -34,13 +34,13 @@ public class MoveCommand implements ICommand, IUndoable {
 
         MoveCommand move = new MoveCommand(targetPoint);
 
-        for (GenerateShape shape : (ListModel.getSelectedList().getList())) {
+        for (GenerateShape shape : (JPaintManager.getSelectedList().getList())) {
             previousShape = shape;
 
             SelectCommand selection = SelectCommand.getSelection();
             Point selectionStart = selection.upperLeftPoint;
 
-            ListModel.getSubjectList().removeShape(previousShape);
+            JPaintManager.getSubjectList().removeShape(previousShape);
             previousShapeList.add(previousShape);
 
             int xLength = Math.abs(selectionStart.getX() - shape.startPoint.getX());
@@ -61,7 +61,7 @@ public class MoveCommand implements ICommand, IUndoable {
 
             currentShape = new GenerateShape(minX, minY, startPoint, endPoint, height, width, shape.shapeType,shape.primaryColor,shape.secondaryColor,shape.shadingType);
 
-            ListModel.getSubjectList().addShape(currentShape);
+            JPaintManager.getSubjectList().addShape(currentShape);
             currentShapeList.add(currentShape);
         }
     }
@@ -71,7 +71,7 @@ public class MoveCommand implements ICommand, IUndoable {
 
         move(targetPoint);
         CommandHistory.add(this);
-        ListModel.getSelectedList().getList().clear();
+        JPaintManager.getSelectedList().getList().clear();
 
     }
 
@@ -80,11 +80,11 @@ public class MoveCommand implements ICommand, IUndoable {
 
         for (GenerateShape shape : currentShapeList) {
             currentShape = shape;
-            ListModel.getSubjectList().removeShape(currentShape);
+            JPaintManager.getSubjectList().removeShape(currentShape);
         }
         for (GenerateShape shape : previousShapeList) {
             previousShape = shape;
-            ListModel.getSubjectList().addShape(previousShape);
+            JPaintManager.getSubjectList().addShape(previousShape);
         }
     }
 
@@ -93,11 +93,11 @@ public class MoveCommand implements ICommand, IUndoable {
 
         for (GenerateShape shape : currentShapeList) {
             currentShape = shape;
-            ListModel.getSubjectList().addShape(currentShape);
+            JPaintManager.getSubjectList().addShape(currentShape);
         }
         for (GenerateShape shape : previousShapeList) {
             previousShape = shape;
-            ListModel.getSubjectList().removeShape(previousShape);
+            JPaintManager.getSubjectList().removeShape(previousShape);
         }
     }
 

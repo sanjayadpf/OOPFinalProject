@@ -31,7 +31,7 @@ public class DrawObserver implements IShapeObserver {
         graphics2d.setColor(Color.WHITE);
         graphics2d.fillRect(0, 0, 1250, 800); //get height and width
         System.out.println("1observer running");
-        for (GenerateShape shape : ((ManageObservers) ListModel.getSubjectList()).getList()) {
+        for (GenerateShape shape : ((ManageObservers) JPaintManager.getSubjectList()).getList()) {
             StrategySelection.drawShapeStrategy(shape, drawShape);
             System.out.println("2observer running");
         }

@@ -6,7 +6,7 @@
 package controller;
 
 import controller.interfaces.ICommand;
-import model.shapeUtility.ListModel;
+import model.shapeUtility.JPaintManager;
 
 /**
  *
@@ -16,8 +16,9 @@ public class GroupCommand implements ICommand{
 
     @Override
     public void run() {
-        ListModel.selectedList=ListModel.groupList;
-       // ListModel.getGroupList().getList().clear();
+        JPaintManager.setSelectedList(JPaintManager.getGroupList());
+       // JPaintManager.selectedList=JPaintManager.groupList;
+       // JPaintManager.getGroupList().getList().clear();
         System.out.println("Group");
     }
     

@@ -29,7 +29,14 @@ public class StrategySelection {
             shapeStrategy=new LineStrategy();
         }else if (shape.shapeType==ShapeType.ARC){
             shapeStrategy=new ArcStrategy();
+        }else if (shape.shapeType==ShapeType.RECTANGLE3D){
+            shapeStrategy=new Rectangle3DStrategy();
+        }else if (shape.shapeType==ShapeType.ROUNDRECTANGLE){
+            shapeStrategy=new RoundRectangleStrategy();
+        }else if (shape.shapeType==ShapeType.ORTHOGANAL_TRIANGLE){
+            shapeStrategy=new OrthoganalTriangleStrategy();
         }
+        
         
         
         if(shapeStrategy==null){ //Null object checker

@@ -7,7 +7,7 @@ package controller;
 
 import controller.interfaces.ICommand;
 import model.shapeUtility.GenerateShape;
-import model.shapeUtility.ListModel;
+import model.shapeUtility.JPaintManager;
 
 /**
  *
@@ -18,9 +18,9 @@ public class CopyCommand implements ICommand {
     @Override
     public void run() {
 
-        ListModel.getClipBoardList().getList().clear();
+        JPaintManager.getClipBoardList().getList().clear();
 
-        for (GenerateShape shape : ListModel.getSelectedList().getList()) {
+        for (GenerateShape shape : JPaintManager.getSelectedList().getList()) {
             //shifted down 100 & 100
             Point newStartPoint = new Point(shape.startPoint.getX() + 100,shape.endPoint.getY() + 100);
             Point newEndPoint = new Point(shape.endPoint.getX() + 100, shape.endPoint.getY() + 100);
@@ -33,7 +33,7 @@ public class CopyCommand implements ICommand {
            
             GenerateShape copy = new GenerateShape(newX, newY, newStartPoint, newEndPoint,newHeight, newWidth,shape.shapeType,shape.primaryColor,shape.secondaryColor,shape.shadingType);
 			
-            ListModel.getClipBoardList().addShape(copy);
+            JPaintManager.getClipBoardList().addShape(copy);
             
         }
     }

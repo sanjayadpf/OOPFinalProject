@@ -3,6 +3,7 @@ package model;
 public enum ShapeType {
     ELLIPSE,
     RECTANGLE,
+    ORTHOGANAL_TRIANGLE,
     TRIANGLE,
     CIRCLE,
     LINE,

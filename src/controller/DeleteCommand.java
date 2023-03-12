@@ -9,7 +9,7 @@ import controller.interfaces.ICommand;
 import controller.interfaces.IUndoable;
 import java.util.ArrayList;
 import model.shapeUtility.GenerateShape;
-import model.shapeUtility.ListModel;
+import model.shapeUtility.JPaintManager;
 
 /**
  *
@@ -23,9 +23,9 @@ public class DeleteCommand implements ICommand, IUndoable{
     @Override
     public void run() {
         deleteShapeList.clear();
-        for (GenerateShape shape : ListModel.getSelectedList().getList()) {
+        for (GenerateShape shape : JPaintManager.getSelectedList().getList()) {
             deleteShape = shape;
-            ListModel.getSubjectList().removeShape(deleteShape);
+            JPaintManager.getSubjectList().removeShape(deleteShape);
             deleteShapeList.add(deleteShape);
 
             CommandHistory.add(this);
@@ -35,14 +35,14 @@ public class DeleteCommand implements ICommand, IUndoable{
     @Override
     public void undo() {
         for (GenerateShape shape : deleteShapeList) {
-            ListModel.getSubjectList().addShape(shape);
+            JPaintManager.getSubjectList().addShape(shape);
         }
     }
 
     @Override
     public void redo() {
         for (GenerateShape shape : deleteShapeList) {
-            ListModel.getSubjectList().removeShape(shape);
+            JPaintManager.getSubjectList().removeShape(shape);
         }
     }
 }

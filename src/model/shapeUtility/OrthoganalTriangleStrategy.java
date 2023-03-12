@@ -5,24 +5,23 @@
  */
 package model.shapeUtility;
 
-import model.interfaces.IDrawShape;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import model.ShapeShadingType;
+import model.interfaces.IDrawShape;
 
 /**
  *
  * @author sanja
  */
-public class TriangleStrategy implements IDrawShape {
+public class OrthoganalTriangleStrategy implements IDrawShape {
 
     @Override
     public void draw(GenerateShape shape, Graphics2D graphics2d) {
-
         int[] x_coordinate = new int[3];
         x_coordinate[0] = shape.startPoint.getX();
-        x_coordinate[1] = 2*shape.startPoint.getX()-shape.endPoint.getX();//shape.startPoint.getX();
+        x_coordinate[1] = shape.startPoint.getX();
         x_coordinate[2] = shape.endPoint.getX();
 
         int[] y_coordinate = new int[3];
@@ -55,4 +54,5 @@ public class TriangleStrategy implements IDrawShape {
         }
 
     }
+
 }

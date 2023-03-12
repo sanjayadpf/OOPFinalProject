@@ -10,7 +10,7 @@ import controller.interfaces.IUndoable;
 import java.util.ArrayList;
 import java.util.List;
 import model.shapeUtility.GenerateShape;
-import model.shapeUtility.ListModel;
+import model.shapeUtility.JPaintManager;
 import model.shapeUtility.ManageObservers;
 
 /**
@@ -27,26 +27,26 @@ public class PasteCommand implements ICommand, IUndoable {
 
     @Override
     public void run() {
-        for (GenerateShape shape : ListModel.getClipBoardList().getList()) {
+        for (GenerateShape shape : JPaintManager.getClipBoardList().getList()) {
             pasteShape = shape;
             pastedShapeList.add(shape);
-            ListModel.getSubjectList().addShape(pasteShape);
+            JPaintManager.getSubjectList().addShape(pasteShape);
             CommandHistory.add(this);
         }
-        ListModel.getClipBoardList().getList().clear();
+        JPaintManager.getClipBoardList().getList().clear();
     }
 
     @Override
     public void undo() {
         for (GenerateShape shapeToPaste : pastedShapeList) {
-            ListModel.getSubjectList().removeShape(shapeToPaste);
+            JPaintManager.getSubjectList().removeShape(shapeToPaste);
         }
     }
 
     @Override
     public void redo() {
         for (GenerateShape shapeToPaste : pastedShapeList) {
-            ListModel.getSubjectList().addShape(shapeToPaste);
+            JPaintManager.getSubjectList().addShape(shapeToPaste);
         }
     }
 

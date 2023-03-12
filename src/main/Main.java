@@ -22,53 +22,38 @@ import model.shapeUtility.DrawObserver;
 import model.shapeUtility.GenerateShape;
 import model.interfaces.IShapeObserver;
 import model.interfaces.IShapeSubject;
-import model.shapeUtility.ListModel;
+import model.shapeUtility.JPaintManager;
 import model.shapeUtility.ManageObservers;
 import model.shapeUtility.SelectedList;
 
 public class Main {
 
     public static void main(String[] args) {
-        PaintCanvas paintCanvas = new PaintCanvas();
-        paintCanvas.addMouseListener(new ClickHandler());
+        final java.util.List<GenerateShape> selectedShapes = new ArrayList<GenerateShape>();
+        IShapeList selectedList = new SelectedList(selectedShapes);
+        JPaintManager.getInstance().setSelectedList(selectedList);
+        //ListModel.selectedList = selectedList; //setting selected lists
 
-        IGuiWindow guiWindow = new GuiWindow(paintCanvas);
-        IUiModule uiModule = new Gui(guiWindow);
+        final java.util.List<GenerateShape> clipBoardShapes = new ArrayList<GenerateShape>();
+        IShapeList clipBoardList = new SelectedList(clipBoardShapes);
+        JPaintManager.getInstance().setClipBoardList(clipBoardList);
+        //ListModel.clipBoardList = clipBoardList; //setting clipBoardList
 
-        ApplicationState appState = new ApplicationState(uiModule);
-        IJPaintController controller = new JPaintController(uiModule, appState);
-
-        controller.setup();
-
-        ClickHandler.getAppState(appState);//passing the app state to the ClickHandler
-        AppMode.getEndpoint(appState);//setting the AppMode with current state
+        //for grouping
+        final java.util.List<GenerateShape> groupedShapes = new ArrayList<GenerateShape>();
+        IShapeList groupedList = new SelectedList(groupedShapes);
+       // JPaintManager.groupList = groupedList; //setting selected lists
+        
+        JPaintManager.getInstance().setGroupList(groupedList);
 
 //        final java.util.List<GenerateShape> generateShapes = new ArrayList<GenerateShape>();
 //        IShapeSubject subject = new ManageObservers(generateShapes);        
 //        IShapeObserver observer = new DrawObserver(paintCanvas);
 //        subject.registerObserver(observer);
-//        ListModel.subjectList=subject;
+//        JPaintManager.subjectList=subject;
 //        
 //        final java.util.List<GenerateShape> selectedShapes = new ArrayList<GenerateShape>();
 //        IShapeList selectedList = new SelectedList(selectedShapes);
-//        ListModel.selectedList=selectedList; //adding selectedShapes List
-        final java.util.List<GenerateShape> generateShapes = new ArrayList<GenerateShape>();
-        IShapeSubject subject = new ManageObservers(generateShapes);
-        IShapeObserver observer = new DrawObserver(paintCanvas);
-        subject.registerObserver(observer);
-        ListModel.subjectList=subject;//adding selectedShapes List
-
-        final java.util.List<GenerateShape> selectedShapes = new ArrayList<GenerateShape>();
-        IShapeList selectedList = new SelectedList(selectedShapes);
-        ListModel.selectedList=selectedList; //setting selected lists
-
-        final java.util.List<GenerateShape> clipBoardShapes = new ArrayList<GenerateShape>();
-        IShapeList clipBoardList = new SelectedList(clipBoardShapes);
-        ListModel.clipBoardList=clipBoardList; //setting clipBoardList
-        
-        //for grouping
-        final java.util.List<GenerateShape> groupedShapes = new ArrayList<GenerateShape>();
-        IShapeList groupedList = new SelectedList(groupedShapes);
-        ListModel.groupList=groupedList; //setting selected lists
+//        JPaintManager.selectedList=selectedList; //adding selectedShapes List
     }
 }
