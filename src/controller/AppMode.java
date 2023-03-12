@@ -15,6 +15,7 @@ import static model.MouseMode.SELECT;
 import model.ShapeShadingType;
 import model.ShapeType;
 import model.persistence.ApplicationState;
+import model.shapeUtility.JPaintManager;
 
 /**
  *
@@ -35,8 +36,10 @@ public class AppMode {
         
         if(mode==DRAW){
             command = CommandFactory.draw(x, y, startPoint, endPoint, height, width, shapeType,primaryColor,secondaryColor,shadingType);
+            
         }else if(mode == SELECT){
             command = CommandFactory.select(startPoint, endPoint);
+            
             System.out.println("select works");
         }else if(mode==MOVE){
             command = CommandFactory.move(startPoint);
