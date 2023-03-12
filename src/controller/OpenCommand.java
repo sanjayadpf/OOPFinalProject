@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import controller.interfaces.ICommand;
 import controller.interfaces.IUndoable;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import model.shapeUtility.GenerateShape;
 import model.shapeUtility.JPaintManager;
 
@@ -37,36 +39,44 @@ public class OpenCommand implements ICommand, IUndoable {
     }
 
     public void readJson() {
-        Reader inputFile = null;
-        Gson gson = new Gson();//GSOn object
-        try {
-            inputFile = new FileReader("paint.json"); // importing the ledger.
-            Type typeFormat = new TypeToken<List<GenerateShape>>() { // defining the expected type form the data read from the JSON
-            }.getType();
 
-            List<GenerateShape> shapeList = gson.fromJson(inputFile, typeFormat); // need to put into the global array list
-
-            for (GenerateShape shape : shapeList) {
-
-                openShape = shape;
-                openList.add(shape);
-                JPaintManager.getSubjectList().addShape(openShape);
-                CommandHistory.add(this);
-            }
-            JPaintManager.getClipBoardList().getList().clear();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(OpenCommand.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        int result = fileChooser.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+            Reader inputFile = null;
+            Gson gson = new Gson();//GSOn object
             try {
-                inputFile.close(); // closing the file
-            } catch (IOException ex) {
+                inputFile = new FileReader(selectedFile.getAbsolutePath());
+                Type typeFormat = new TypeToken<List<GenerateShape>>() {
+                }.getType();
+
+                List<GenerateShape> shapeList = gson.fromJson(inputFile, typeFormat);
+
+                for (GenerateShape shape : shapeList) {
+
+                    openShape = shape;
+                    openList.add(shape);
+                    JPaintManager.getSubjectList().addShape(openShape);
+                    CommandHistory.add(this);
+                }
+                JPaintManager.getSaveList().getList().clear();
+            } catch (FileNotFoundException ex) {
                 Logger.getLogger(OpenCommand.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
+                    inputFile.close(); // closing the file
+                } catch (IOException ex) {
+                    Logger.getLogger(OpenCommand.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
 
     }
 
-   @Override
+    @Override
     public void undo() {
         for (GenerateShape shapeToOpen : openList) {
             JPaintManager.getSubjectList().removeShape(shapeToOpen);

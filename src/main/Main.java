@@ -49,7 +49,7 @@ public class Main {
         
         final java.util.List<GenerateShape> savedShapes = new ArrayList<GenerateShape>();
         IShapeList savedList = new SelectedList(savedShapes);
-        JPaintManager.getInstance().setSaveList(groupedList);
+        JPaintManager.getInstance().setSaveList(savedList);
 //        final java.util.List<GenerateShape> generateShapes = new ArrayList<GenerateShape>();
 //        IShapeSubject subject = new ManageObservers(generateShapes);        
 //        IShapeObserver observer = new DrawObserver(paintCanvas);
