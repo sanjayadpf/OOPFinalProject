@@ -59,8 +59,23 @@ public class MoveCommand implements ICommand, IUndoable {
             int width = Math.abs(x1 - x2);
             int height = Math.abs(y1 - y2);
 
+           
+            
             currentShape = new GenerateShape(minX, minY, startPoint, endPoint, height, width, shape.shapeType,shape.primaryColor,shape.secondaryColor,shape.shadingType);
-
+            
+             //check for Arc and RoundRectangle
+            if(previousShape.isArc){
+                currentShape.startAngle=previousShape.startAngle;
+                currentShape.endAngle=previousShape.endAngle;
+                currentShape.isArc=true;
+            }
+            if(previousShape.isRoundRec){
+                currentShape.arcWidth=previousShape.arcWidth;
+                currentShape.arcHeight=previousShape.arcHeight;
+                currentShape.isRoundRec=true;
+            }
+            
+            
             JPaintManager.getSubjectList().addShape(currentShape);
             currentShapeList.add(currentShape);
         }

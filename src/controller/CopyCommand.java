@@ -5,6 +5,7 @@
  */
 package controller;
 
+
 import controller.interfaces.ICommand;
 import model.shapeUtility.GenerateShape;
 import model.shapeUtility.JPaintManager;
@@ -33,6 +34,19 @@ public class CopyCommand implements ICommand {
            
             GenerateShape copy = new GenerateShape(newX, newY, newStartPoint, newEndPoint,newHeight, newWidth,shape.shapeType,shape.primaryColor,shape.secondaryColor,shape.shadingType);
 			
+               //check for Arc and RoundRectangle
+            if(shape.isArc){
+                copy.startAngle=shape.startAngle;
+                copy.endAngle=shape.endAngle;
+                copy.isArc=true;
+            }
+            if(shape.isRoundRec){
+                copy.arcWidth=shape.arcWidth;
+                copy.arcHeight=shape.arcHeight;
+                copy.isRoundRec=true;
+            }
+            
+            
             JPaintManager.getClipBoardList().addShape(copy);
             
         }
