@@ -33,6 +33,7 @@ public class JPaintManager {
     private static IShapeList selectedList;
     private static IShapeList clipBoardList;
     private static IShapeList groupList;
+    private static IShapeList saveList;
 
     public JPaintManager() {
         //onetime process
@@ -108,6 +109,14 @@ public class JPaintManager {
 
     public static void setClipBoardList(IShapeList clipBoardList) {
         JPaintManager.clipBoardList = clipBoardList;
+    }
+
+    public static IShapeList getSaveList() {
+        return saveList;
+    }
+
+    public static void setSaveList(IShapeList saveList) {
+        JPaintManager.saveList = saveList;
     }
     
 }

@@ -45,7 +45,11 @@ public class Main {
        // JPaintManager.groupList = groupedList; //setting selected lists
         
         JPaintManager.getInstance().setGroupList(groupedList);
-
+        //for save
+        
+        final java.util.List<GenerateShape> savedShapes = new ArrayList<GenerateShape>();
+        IShapeList savedList = new SelectedList(savedShapes);
+        JPaintManager.getInstance().setSaveList(groupedList);
 //        final java.util.List<GenerateShape> generateShapes = new ArrayList<GenerateShape>();
 //        IShapeSubject subject = new ManageObservers(generateShapes);        
 //        IShapeObserver observer = new DrawObserver(paintCanvas);
