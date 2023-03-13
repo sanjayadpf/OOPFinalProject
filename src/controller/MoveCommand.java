@@ -74,7 +74,10 @@ public class MoveCommand implements ICommand, IUndoable {
                 currentShape.arcHeight=previousShape.arcHeight;
                 currentShape.isRoundRec=true;
             }
-            
+            if(previousShape.isText){
+                currentShape.text=previousShape.text;
+                currentShape.isText=true;
+            }
             
             JPaintManager.getSubjectList().addShape(currentShape);
             currentShapeList.add(currentShape);

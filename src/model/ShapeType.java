@@ -9,5 +9,6 @@ public enum ShapeType {
     LINE,
     ARC,
     RECTANGLE3D,
-    ROUNDRECTANGLE
+    ROUNDRECTANGLE,
+    TEXT
 }

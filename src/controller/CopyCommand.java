@@ -45,7 +45,10 @@ public class CopyCommand implements ICommand {
                 copy.arcHeight=shape.arcHeight;
                 copy.isRoundRec=true;
             }
-            
+            if(shape.isText){
+                copy.text=shape.text;
+                copy.isText=true;
+            }
             
             JPaintManager.getClipBoardList().addShape(copy);
             

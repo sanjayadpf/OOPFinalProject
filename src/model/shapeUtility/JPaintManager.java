@@ -26,27 +26,35 @@ import view.interfaces.IUiModule;
  * @author sanja
  */
 public class JPaintManager {
-    
+
     private static JPaintManager jPaintManager;
-    
+
     private static IShapeSubject subjectList;
     private static IShapeList selectedList;
     private static IShapeList clipBoardList;
     private static IShapeList groupList;
     private static IShapeList saveList;
 
+    PaintCanvas paintCanvas;
+    IGuiWindow guiWindow;
+    IUiModule uiModule;
+    ApplicationState appState;
+    IJPaintController controller;
+
     public JPaintManager() {
         //onetime process
-        PaintCanvas paintCanvas = new PaintCanvas();
+        paintCanvas = new PaintCanvas();
         paintCanvas.addMouseListener(new ClickHandler());
 
-        IGuiWindow guiWindow = new GuiWindow(paintCanvas);
-        IUiModule uiModule = new Gui(guiWindow);
+        guiWindow = new GuiWindow(paintCanvas);
+        uiModule = new Gui(guiWindow);
 
-        ApplicationState appState = new ApplicationState(uiModule);
-        IJPaintController controller = new JPaintController(uiModule, appState);
+        appState = new ApplicationState(uiModule);
+        controller = new JPaintController(uiModule, appState);
 
         controller.setup();
+
+
 
         ClickHandler.getAppState(appState);//passing the app state to the ClickHandler
         AppMode.getEndpoint(appState);//setting the AppMode with current state
@@ -57,8 +65,17 @@ public class JPaintManager {
         JPaintManager.subjectList = subject;//adding selectedShapes List
 
     }
+
+    public IGuiWindow getGuiWindow() {
+        return guiWindow;
+    }
+
+    public void setGuiWindow(IGuiWindow guiWindow) {
+        this.guiWindow = guiWindow;
+    }
+
     //singleton implementation
-    public static JPaintManager getInstance(){
+    public static JPaintManager getInstance() {
         if (jPaintManager == null) {
             jPaintManager = new JPaintManager();
         }
@@ -118,5 +135,13 @@ public class JPaintManager {
     public static void setSaveList(IShapeList saveList) {
         JPaintManager.saveList = saveList;
     }
-    
+
+    public ApplicationState getAppState() {
+        return appState;
+    }
+
+    public void setAppState(ApplicationState appState) {
+        this.appState = appState;
+    }
+
 }

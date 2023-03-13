@@ -35,6 +35,8 @@ public class StrategySelection {
             shapeStrategy=new RoundRectangleStrategy();
         }else if (shape.shapeType==ShapeType.ORTHOGANAL_TRIANGLE){
             shapeStrategy=new OrthoganalTriangleStrategy();
+        }else if (shape.shapeType==ShapeType.TEXT){
+            shapeStrategy=new TextStrategy();
         }
         
         

@@ -9,6 +9,7 @@ import model.dialogs.DialogProvider;
 import model.interfaces.IApplicationState;
 import model.interfaces.IDialogProvider;
 import model.shapeUtility.ColorInfo;
+import model.shapeUtility.JPaintManager;
 import view.interfaces.IUiModule;
 
 public class ApplicationState implements IApplicationState {
@@ -30,6 +31,7 @@ public class ApplicationState implements IApplicationState {
     @Override
     public void setActiveShape() {
         activeShapeType = uiModule.getDialogResponse(dialogProvider.getChooseShapeDialog());
+        
     }
 
     @Override
@@ -50,6 +52,7 @@ public class ApplicationState implements IApplicationState {
     @Override
     public void setActiveStartAndEndPointMode() {
         activeMouseMode = uiModule.getDialogResponse(dialogProvider.getChooseStartAndEndPointModeDialog());
+        JPaintManager.getInstance().getGuiWindow().getStatusLabel().setText("Mouse Mode: " + JPaintManager.getInstance().getAppState().getActiveMouseMode().toString());
     }
 
     @Override
@@ -83,5 +86,6 @@ public class ApplicationState implements IApplicationState {
         activeSecondaryColor = new ColorInfo(Color.BLACK, ShapeColor.BLACK); //activeSecondaryColor = ShapeColor.GREEN;
         activeShapeShadingType = ShapeShadingType.FILLED_IN;
         activeMouseMode = MouseMode.DRAW;
+        
     }
 }

@@ -32,6 +32,10 @@ public class GenerateShape implements ICommand, IUndoable {
     public int arcWidth;
     public int arcHeight;
     public boolean isRoundRec=false;
+    
+    //for Text
+    public String text;
+    public boolean isText=false;
 
     public GenerateShape(int x, int y, Point startPoint, Point endPoint,
             int height, int width, ShapeType shapeType, Color primaryColor, Color secondaryColor, ShapeShadingType shadingType) {
