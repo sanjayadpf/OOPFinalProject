@@ -27,13 +27,18 @@ public class GroupCommand implements ICommand,IUndoable{
         System.out.println("Group");
     }
 
-    @Override
+   @Override
     public void undo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (GenerateShape shapeToPaste : JPaintManager.getGroupList().getList()) {
+            JPaintManager.getSubjectList().removeShape(shapeToPaste);
+        }
     }
 
     @Override
     public void redo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (GenerateShape shapeToPaste : JPaintManager.getGroupList().getList()) {
+            JPaintManager.getSubjectList().addShape(shapeToPaste);
+        }
     }
+
 }
