@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+
 import model.shapeUtility.GenerateShape;
 import model.shapeUtility.JPaintManager;
 
@@ -36,6 +37,7 @@ public class OpenCommand implements ICommand, IUndoable {
     @Override
     public void run() {
         readJson();
+
     }
 
     public void readJson() {
@@ -48,6 +50,7 @@ public class OpenCommand implements ICommand, IUndoable {
             System.out.println("Selected file: " + selectedFile.getAbsolutePath());
             Reader inputFile = null;
             Gson gson = new Gson();//GSOn object
+
             try {
                 inputFile = new FileReader(selectedFile.getAbsolutePath());
                 Type typeFormat = new TypeToken<List<GenerateShape>>() {

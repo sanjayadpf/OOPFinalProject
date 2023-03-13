@@ -7,24 +7,17 @@ package controller;
 
 import controller.interfaces.ICommand;
 import controller.interfaces.IUndoable;
-import java.util.ArrayList;
-import model.shapeUtility.GenerateShape;
 import model.shapeUtility.JPaintManager;
 
 /**
  *
  * @author sanja
  */
-public class GroupCommand implements ICommand,IUndoable{
-    
-   
+public class UnGroupCommand implements ICommand,IUndoable{
 
     @Override
     public void run() {
-        JPaintManager.setSelectedList(JPaintManager.getGroupList());
-       // JPaintManager.selectedList=JPaintManager.groupList;
-       // JPaintManager.getGroupList().getList().clear();
-        System.out.println("Group");
+        JPaintManager.getGroupList().getList().clear();
     }
 
     @Override
@@ -36,4 +29,5 @@ public class GroupCommand implements ICommand,IUndoable{
     public void redo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 }
